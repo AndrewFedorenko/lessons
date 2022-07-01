@@ -11,6 +11,7 @@ public class Lesson4 {
         Scanner Sc = new Scanner(System.in);
 
         while (y != 7){
+            System.out.println();
             System.out.println("------------------------------------------------");
             System.out.println("Input number or task (from 1 to 6) or 7 to break:");
 
@@ -140,12 +141,21 @@ public class Lesson4 {
         Scanner Sc = new Scanner(System.in);
 
         System.out.println("part 6: input string " + flen +" symbols length:");
-        int fin = 1;
-        while (fin <= flen){
-            inputstring.append((char)InputStreamReader.read());
-            fin++;
+        int read;
+        while ((read = InputStreamReader.read()) != -1){
+            char ch = (char)read;
+            if (ch=='\n')  {
+                break;
+            }
+            inputstring.append(ch);
         }
-        String firststring = inputstring.toString();
+
+        if (inputstring.length() < flen) {
+            System.out.println("Your string must be 15-length or more");
+            return;
+        }
+
+        String firststring = inputstring.substring(0, flen).toString();
         System.out.println("Your 15-length string is: " + firststring);
 
         System.out.println("Input position from (1-" + flen + "):");
